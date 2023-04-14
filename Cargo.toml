@@ -22,8 +22,8 @@ chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
 sqlx-macros = { version = "0.6.3" }
 config = "0.13.3"
 
-[target.x86_64-unknown-linux-gnu]
-rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
+#[target.x86_64-unknown-linux-gnu]
+#rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
 
 # Dev dependencies are used exclusively when running tests or examples
 # They do not get included in the final application binary!
