@@ -4,9 +4,9 @@
 // You can inspect what code gets generated using
 // `cargo expand --test health_check` (<- name of the test file)
 
+use sqlx::{Connection, PgConnection};
 use std::net::TcpListener;
-use sqlx::{PgConnection, Connection};
-use zero2prod::configuration::{get_configuration, self};
+use zero2prod::configuration::{self, get_configuration};
 
 // No .await call, therefore no need for `spawn_app` to be async now.
 // We are also running tests, so it is not worth it to propagate errors:
