@@ -16,7 +16,7 @@ name = "zero2prod"
 actix-web = "4.3.1"
 serde = { version = "1", features = ["derive"]}
 tokio = { version = "1.27.0", features = ["rt-multi-thread", "macros"] }
-sqlx = { version = "0.6.3", default-features = false, features = ["runtime-actix-native-tls", "macros", "postgres", "uuid", "chrono", "migrate"] }
+sqlx = { version = "0.6.3", default-features = false, features = ["runtime-actix-native-tls", "macros", "postgres", "uuid", "chrono", "migrate", "offline"] }
 uuid = { version = "1", features = ["v4"] }
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
 sqlx-macros = { version = "0.6.3" }
