@@ -3009,6 +3009,7 @@ dependencies = [
  "serde_json",
  "sqlx",
  "sqlx-macros",
+ "thiserror",
  "tokio",
  "tracing",
  "tracing-actix-web",
