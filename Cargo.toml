@@ -2,6 +2,7 @@
 name = "zero2prod"
 version = "0.1.0"
 edition = "2021"
+author = ["Omar Alhariri <omar_alhariri@outlook.com>"]
 
 [lib]
 path = "src/lib.rs"
