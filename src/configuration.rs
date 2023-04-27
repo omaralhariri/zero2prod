@@ -1,6 +1,8 @@
 use config::Config;
 use secrecy::ExposeSecret;
 use secrecy::Secret;
+use sqlx::postgres::PgConnectOptions;
+use sqlx::ConnectOptions;
 
 use crate::domain::SubscriberEmail;
 
@@ -9,6 +11,7 @@ pub struct Settings {
     pub database: DatabaseSettings,
     pub application: ApplicationSettings,
     pub email_client: EmailClientSettings,
+    pub redis_uri: Secret<String>,
 }
 
 #[derive(serde::Deserialize, Clone)]
@@ -48,6 +51,20 @@ impl DatabaseSettings {
             self.host,
             self.port
         ))
+    }
+
+    pub fn with_db(&self) -> PgConnectOptions {
+        let mut options = self.without_db().database(&self.database_name);
+        options.log_statements(tracing::log::LevelFilter::Trace);
+        options
+    }
+
+    pub fn without_db(&self) -> PgConnectOptions {
+        PgConnectOptions::new()
+            .host(&self.host)
+            .username(&self.username)
+            .password(&self.password.expose_secret())
+            .port(self.port)
     }
 }
 
