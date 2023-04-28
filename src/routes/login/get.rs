@@ -6,9 +6,14 @@ use actix_web_flash_messages::{IncomingFlashMessages, Level};
 
 pub async fn login_form(flash_messages: IncomingFlashMessages) -> HttpResponse {
     let mut error_html = String::new();
+    let mut info_html = String::new();
 
     for m in flash_messages.iter().filter(|m| m.level() == Level::Error) {
         writeln!(error_html, "<p><i>{}</i></p>", m.content()).unwrap();
+    }
+
+    for m in flash_messages.iter().filter(|m| m.level() == Level::Info) {
+        writeln!(info_html, "<p><i>{}</i></p>", m.content()).unwrap();
     }
 
     HttpResponse::Ok()
@@ -22,6 +27,7 @@ pub async fn login_form(flash_messages: IncomingFlashMessages) -> HttpResponse {
     <title>Login</title>
 </head>
 <body>
+    {info_html}
     {error_html}
     <form action="/login" method="post">
         <label>Username
